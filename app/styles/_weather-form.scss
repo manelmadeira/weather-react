@@ -6,6 +6,7 @@
   padding: 15px;
 
   form {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,7 +38,7 @@
 
   &:focus {
     outline: none;
-    border-bottom-color: $brand-primary;
+    border-bottom-color: #333;
   }
 
   &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -55,6 +56,14 @@
   &:-moz-placeholder { /* Firefox 18- */
     color: #ccc;
     font-weight: 100;
+  }
+
+  @at-root #{&}--error {
+    border-bottom-color: $brand-danger;
+
+    &:focus {
+      border-bottom-color: $brand-danger;
+    }
   }
 }
 
@@ -85,5 +94,21 @@
   &:hover {
     cursor: pointer;
     background-color: #aaa;
+  }
+}
+
+.form-error {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 11px;
+  color: $brand-danger;
+  transform: translateY(100%);
+
+  &::before {
+    content: '\f071';
+    margin-right: 5px;
+    font-family: FontAwesome;
+    font-size: 9px;
   }
 }

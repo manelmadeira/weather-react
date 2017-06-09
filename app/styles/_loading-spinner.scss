@@ -1,0 +1,14 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+
+.loading__icon {
+  display: block;
+  margin-bottom: 15px;
+  color: #555;
+}

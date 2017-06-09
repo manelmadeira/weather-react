@@ -14,7 +14,10 @@ const Forecast = (props) => {
 
       {
         !props.info
-        ? 'No information found...'
+        ? <div className="forecast__not-found">
+            <i className="forecast__not-found-icon fa fa-exclamation-circle"></i>
+            <span className="forecast__not-found-text">No weather info found.<br />Please check the spelling.</span>
+          </div>
         : <div className="forecast__info">
             <div className="forecast__now">
               <ForecastDay

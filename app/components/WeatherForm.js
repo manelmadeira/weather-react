@@ -9,9 +9,16 @@ const WeatherForm = (props) => {
       <form name="weather" onSubmit={props.onCitySubmission}>
         <input
           type="text"
-          className='weather-form__input'
+          className={'weather-form__input ' + (props.error ? 'weather-form__input--error' : '') }
           placeholder="Enter city name"
           onChange={props.onCityUpdate} />
+
+        {
+          props.error &&
+          <div className="form-error">
+            { props.error }
+          </div>
+        }
 
         <button
           type="button"

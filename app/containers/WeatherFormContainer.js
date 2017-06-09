@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 
 import WeatherForm from '../components/WeatherForm';
 
+const ERROR = 'Must provide a city';
 
 class WeatherFormContainer extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class WeatherFormContainer extends Component {
 
     this.state = {
       city: '',
+      error: null,
     };
   }
 
@@ -18,6 +20,7 @@ class WeatherFormContainer extends Component {
 
     this.setState({
       city,
+      error: !city ? ERROR : null,
     });
   }
 
@@ -30,7 +33,9 @@ class WeatherFormContainer extends Component {
     console.log(city);
 
     if (!city) {
-      // TODO: error handler
+      this.setState({
+        error: ERROR,
+      });
       return;
     }
 
@@ -38,9 +43,12 @@ class WeatherFormContainer extends Component {
   }
 
   render() {
+    const { error } = this.state;
+
     return (
       <div className="weather-form-container">
         <WeatherForm
+          error={error}
           onCityUpdate={this.onCityUpdate}
           onCitySubmission={this.onCitySubmission} />
       </div>

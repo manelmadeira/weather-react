@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import Forecast from '../components/Forecast';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 import { getYahooWeather, setWeatherIcon } from '../utils/yahooWeatherService';
 
@@ -40,22 +41,21 @@ class ForecastContainer extends Component {
   }
 
   getWeather(city) {
-    console.log('get weather for ', city);
-
     getYahooWeather(city)
       .then((forecast) => {
         let item = null;
         let units = null;
+        let location = null;
         if (forecast) {
           item = forecast.channel.item;
           units = forecast.channel.units;
+          location = forecast.channel.location;
         }
-
-        console.log(item);
 
         this.setState({
           loading: false,
           forecast: item,
+          city: location ? `${location.city}, ${location.country}` : city,
           units,
         });
       });
@@ -68,7 +68,7 @@ class ForecastContainer extends Component {
       <div className="forecast-container">
         {
           loading
-          ? 'Loading...'
+          ? <LoadingSpinner />
           : <Forecast
               units={units}
               city={city}
