@@ -12,6 +12,8 @@ class ForecastContainer extends Component {
 
     const { params } = this.props.match;
 
+    this.intervalCount = null;
+
     this.state = {
       loading: true,
       forecast: null,
@@ -21,26 +23,34 @@ class ForecastContainer extends Component {
   componentDidMount() {
     const { params } = this.props.match;
 
-    this.setState({
-      loading: true,
-      city: params.id,
-    });
-
     this.getWeather(params.id);
+    this.setIntervalWeather(params);
   }
 
   componentWillReceiveProps(nextProps) {
     const { params } = nextProps.match;
 
-    this.setState({
-      loading: true,
-      city: params.id,
-    });
-
     this.getWeather(params.id);
+    this.setIntervalWeather(params);
+  }
+
+  setIntervalWeather(params) {
+    if (this.intervalCount) {
+      clearInterval(this.intervalCount);
+    }
+
+    this.intervalCount = setInterval(
+      this.getWeather.bind(this, params.id),
+      10000
+    );
   }
 
   getWeather(city) {
+    this.setState({
+      loading: true,
+      city,
+    });
+
     getYahooWeather(city)
       .then((forecast) => {
         let item = null;
