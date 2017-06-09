@@ -1,0 +1,89 @@
+@import '~bootstrap/scss/variables';
+
+.weather-form {
+  display: block;
+  margin-bottom: 30px;
+  padding: 15px;
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 60%;
+    margin: 0 auto;
+
+    @media all and (max-width: 500px) {
+      width: 280px;
+      max-width: 100%;
+    }
+  }
+}
+
+.weather-form__title {
+  display: block;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 100;
+}
+
+.weather-form__input {
+  flex: 1;
+  display: block;
+  padding: 3px 5px;
+  border: none;
+  border-bottom: 1px solid #d0d0d0;
+  font-weight: 100;
+
+  &:focus {
+    outline: none;
+    border-bottom-color: $brand-primary;
+  }
+
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #ccc;
+    font-weight: 100;
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: #ccc;
+    font-weight: 100;
+  }
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: #ccc;
+    font-weight: 100;
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    color: #ccc;
+    font-weight: 100;
+  }
+}
+
+.weather-form__btn.btn {
+  flex: 0 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+  }
+
+  &:active {
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: #aaa;
+  }
+}

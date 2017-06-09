@@ -1,0 +1,21 @@
+.forecast-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.forecast-day__icon {
+  font-size: 80px;
+  font-weight: 100;
+  color: #555;
+}
+
+.forecast-day__date,
+.forecast-day__temp {
+  font-size: 21px;
+  font-weight: 100;
+  color: #555;
+  white-space: pre;
+}
