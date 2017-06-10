@@ -30,8 +30,6 @@ class WeatherFormContainer extends Component {
     const { city } = this.state;
     const { history } = this.props;
 
-    console.log(city);
-
     if (!city) {
       this.setState({
         error: ERROR,

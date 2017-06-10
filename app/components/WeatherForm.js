@@ -5,7 +5,7 @@ import '../styles/_weather-form.scss';
 const WeatherForm = (props) => {
   return (
     <div className="weather-form">
-      <h2 className="weather-form__title">Enter a city</h2>
+      <h2 className="weather-form__title">get weather info</h2>
       <form name="weather" onSubmit={props.onCitySubmission}>
         <input
           type="text"

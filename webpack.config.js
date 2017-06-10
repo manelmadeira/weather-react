@@ -3,8 +3,9 @@ const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: __dirname + '/app/index.html',
+  template: path.resolve(__dirname, 'app/index.html'),
   filename: 'index.html',
+  favicon: path.resolve(__dirname, 'app/favicon.ico'),
   inject: 'body',
 });
 
@@ -34,7 +35,7 @@ module.exports = {
         loaders: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
-        test: /.(png|woff(2)?|eot|ttf|svg)(\?.+)?$/,
+        test: /.(ico|png|woff(2)?|eot|ttf|svg)(\?.+)?$/,
         loader: 'url-loader',
         options: {
           limit: 100000,

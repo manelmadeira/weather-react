@@ -5,6 +5,8 @@ import LoadingSpinner from '../components/LoadingSpinner';
 
 import { getYahooWeather, setWeatherIcon } from '../utils/yahooWeatherService';
 
+import '../styles/_forecast-container.scss';
+
 
 class ForecastContainer extends Component {
   constructor(props) {
@@ -40,16 +42,21 @@ class ForecastContainer extends Component {
     }
 
     this.intervalCount = setInterval(
-      this.getWeather.bind(this, params.id),
+      this.getWeather.bind(this, params.id, true),
       10000
     );
   }
 
-  getWeather(city) {
-    this.setState({
-      loading: true,
-      city,
-    });
+  getWeather(city, isReloading = false) {
+    const tmpState = {};
+
+    if (isReloading) {
+      tmpState.reloading = true;
+    } else {
+      tmpState.loading = true;
+    }
+
+    this.setState(tmpState);
 
     getYahooWeather(city)
       .then((forecast) => {
@@ -62,17 +69,24 @@ class ForecastContainer extends Component {
           location = forecast.channel.location;
         }
 
-        this.setState({
-          loading: false,
+        const updatedState = {
           forecast: item,
           city: location ? `${location.city}, ${location.country}` : city,
           units,
-        });
+        };
+
+        if (isReloading) {
+          updatedState.reloading = false;
+        } else {
+          updatedState.loading = false;
+        }
+
+        this.setState(updatedState);
       });
   }
 
   render() {
-    const { city, loading, forecast, units } = this.state;
+    const { city, loading, forecast, units, reloading } = this.state;
 
     return (
       <div className="forecast-container">
@@ -83,6 +97,15 @@ class ForecastContainer extends Component {
               units={units}
               city={city}
               info={forecast} />
+        }
+
+        {
+          reloading &&
+            <div className="forecast-container__reloading-wrapper">
+              <LoadingSpinner
+                onlyIcon={true}
+                small={true} />
+            </div>
         }
       </div>
     );
