@@ -2,6 +2,7 @@
 
 Given a location, fetch the weather forecast from Yahoo Weather API.
 
+Built with [React](https://facebook.github.io/react/) and with [Webpack](https://webpack.js.org/) as the build tool.
 
 ## Installation
 With [Yarn](https://yarnpkg.com/lang/en/):
